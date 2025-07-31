@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./web
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - nexus-network
+
+  api:
+    build: ./api
+    ports:
+      - "5000:5000"
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=nexususer
+      - MYSQL_PASSWORD=nexuspass
+      - MYSQL_DB=nexusautodb
+    depends_on:
+      - db
+    networks:
+      - nexus-network
+
+  db:
+    image: mysql:8.0
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=nexusautodb
+      - MYSQL_USER=nexususer
+      - MYSQL_PASSWORD=nexuspass
+    ports:
+      - "3306:3306"
+    networks:
+      - nexus-network
+
+  proxy:
+    build: ./proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+      - api
+    networks:
+      - nexus-network
+
+networks:
+  nexus-network:
+    driver: bridge
+
+volumes:
+  mysql-data:

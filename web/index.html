@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus-Auto Canada</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Nexus-Auto Canada</h1>
+        <p>Latest Vehicle Models</p>
+    </header>
+
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="https://via.placeholder.com/800x400?text=2025+Ford+Mustang" alt="2025 Ford Mustang">
+                <div class="slide-info">
+                    <h3>2025 Ford Mustang</h3>
+                    <p>Starting at $38,000 CAD</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://via.placeholder.com/800x400?text=2025+Honda+Civic" alt="2025 Honda Civic">
+                <div class="slide-info">
+                    <h3>2025 Honda Civic</h3>
+                    <p>Starting at $28,000 CAD</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://via.placeholder.com/800x400?text=2025+Toyota+RAV4" alt="2025 Toyota RAV4">
+                <div class="slide-info">
+                    <h3>2025 Toyota RAV4</h3>
+                    <p>Starting at $35,000 CAD</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://via.placeholder.com/800x400?text=2025+Chevrolet+Silverado" alt="2025 Chevrolet Silverado">
+                <div class="slide-info">
+                    <h3>2025 Chevrolet Silverado</h3>
+                    <p>Starting at $45,000 CAD</p>
+                </div>
+            </div>
+        </div>
+        <button class="prev">❮</button>
+        <button class="next">❯</button>
+    </div>
+
+    <footer>
+        <p>© 2025 Nexus-Auto Canada. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        document.querySelector('.next').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        });
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        });
+
+        // Initialize first slide
+        showSlide(currentSlide);
+        
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }, 5000);
+    </script>
+</body>
+</html>
