@@ -2,15 +2,14 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://images.app.ridemotive.com/otxyaxebpt0hu5mq0nml5dyyqv4x') ;
-    background: size 400px;
-    background-position:unset;
+    background-color: #eedde4; 
+    
     color: #070808
 }
 
 header {
-    background-color: #ab16c957;
-    color: rgba(6, 255, 68, 0.623);
+    background-color: #2e08b973;
+    color: rgb(251, 252, 253);
     text-align: center;
     padding: 1rem 0;
 }
@@ -22,18 +21,18 @@ header {
 }
 
 .slider {
-    width: 70%;
+    width: 80%;
     overflow: hidden;
 }
 
 .slide {
     display: none;
-    width: 70%;
+    width: 80%;
     position: relative;
 }
 
 .slide img {
-    width: 70%;
+    width: 80%;
     height: auto;
     border-radius: 6px;
 }
@@ -73,5 +72,5 @@ footer {
     color: white;
     position: fixed;
     bottom: 0;
-    width: 80%;
+    width: 100%;
 }
